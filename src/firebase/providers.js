@@ -20,6 +20,7 @@ export const singInWithGoogle = async () => {
 
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode)
 
         return {
             ok: false,
