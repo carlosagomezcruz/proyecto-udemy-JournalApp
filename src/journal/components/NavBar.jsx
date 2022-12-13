@@ -39,7 +39,8 @@ export const NavBar = ({ drawerWidth }) => {
                     <IconButton
                         color='error'
                         onClick={onLogout}>
-
+                        <span>Salir</span>
+                        &nbsp;
                         <LogoutOutlined />
 
                     </IconButton>
