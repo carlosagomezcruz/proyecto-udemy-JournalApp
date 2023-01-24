@@ -4,7 +4,8 @@ module.exports = async () => {
     };
   };
 
-// module.exports = {
-//     testEnvironment: 'jest-environment-jsdom',
-//     setupFiles: ['./jest.setup.js']
-// }
+module.exports = {
+    testEnvironment: 'jest-environment-jsdom',
+    setupFiles: ['./jest.setup.js'],
+    transformIgnorePatterns: [],
+}

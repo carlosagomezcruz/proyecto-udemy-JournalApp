@@ -2,9 +2,9 @@ import { v2 as cloudinary } from 'cloudinary';
 import { fileUpload } from '../../src/helpers/fileUpload';
 
 cloudinary.config({
-    cloud_name: 'cursos-udemy',
-    api_key: '535484127987571',
-    api_secret: 'kTVWAm0r93sPlaQpl291HJINHY4',
+    cloud_name: 'dnclvdwrx',
+    api_key: '972548299743632',
+    api_secret: 'Y0SHWOaq3gtN8XYKLRMGOMd8s1w',
     secure: true
 });
 
@@ -13,22 +13,18 @@ describe('Pruebas en fileUpload', () => {
 
     test('debe de subir el archivo correctamente a cloudinary', async() => {
 
-        const imageUrl = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80';
+        const imageUrl = 'https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21hbGx8ZW58MHx8MHx8&w=1000&q=80';
         const resp = await fetch( imageUrl );
         const blob = await resp.blob();
-        const file = new File([blob], 'foto.jpg');
+        const file = new File([blob],'foto.jpg'); 
 
         const url = await fileUpload( file );
         expect( typeof url ).toBe('string');
-
-        // console.log(url);
-        const segments = url.split('/');
-        const imageId = segments[ segments.length - 1 ].replace('.jpg','');
         
-        const cloudResp = await cloudinary.api.delete_resources([ 'journal/' + imageId ], {
-           resource_type: 'image'
-        });
-        // console.log({ cloudResp })
+        const segments = url.split('/');
+        const imageId = segments[segments.length -1].replace('.jpg','');
+        
+        const cloudResp = await cloudinary.api.delete_resources(['journal-app/' + imageId], { resource_type: 'image'});
 
     });
 
@@ -43,28 +39,3 @@ describe('Pruebas en fileUpload', () => {
 
     
 });
-
-
-
-
-// // import { fileUpload } from '../../src/helpers';
-
-// describe('Pruebas en fileUpload', () => {
-
-//     test('debe subir el archivo correctamente a cloudinary', async () => {
-
-//         const imageUrl = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80';
-//         const resp = await fetch(imageUrl);
-//         const blob = await resp.blob();
-        
-
-//         // // const resp = await axios('https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg')
-//         // // const blob = await resp.request;
-//         // const file = new File([blob], 'foto.jpg');
-//         // console.log(file)
-//         // const url = await fileUpload(file);
-//         // expect(typeof url).toBe('string');
-//     })
-
-
-// })
